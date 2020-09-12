@@ -6,6 +6,8 @@ const newg = document.querySelector('#new');
 const stop = document.querySelector('#stop');
 const pedir = document.querySelector('#pedir');
 
+const divCJugador = document.querySelector('#jugador');
+
 let puntosJugador = 0, puntosComputadora = 0;
 const smalls = document.querySelectorAll('small');
 
@@ -50,6 +52,20 @@ pedir.addEventListener('click', ()=>{
     const carta = pedirCarta();
 puntosJugador = puntosJugador + valorCarta( carta );
 smalls [0].innerText= puntosJugador ; 
+
+const imgcarta = document.createElement('img');
+imgcarta.src = `assets/cartas/${carta}.png` ;
+imgcarta.classList.add('carta');
+
+divCJugador.append(imgcarta);
+
+if ( puntosJugador>21){
+    console.warn('Perdiste u.u');
+    pedir.disabled = true;
+}else if (puntosJugador === 21 ){
+    console.warn('21 uwu');
+    pedir.disabled = true;
+}
 
 
 })
