@@ -2,7 +2,7 @@ let deck = [];
 const tipos= ['C','D','H','S'];
 const especiales= ['A','J','Q','K'];
 
-const newg = document.querySelector('#new');
+const newg = document.querySelector('#newg');
 const bstop = document.querySelector('#bstop');
 const pedir = document.querySelector('#pedir');
 
@@ -65,6 +65,10 @@ const turnoComputadora = ( puntosJugador)=>{
         if (puntosMinimos>21){break;}
     }while((puntosComputadora<puntosMinimos) && (puntosMinimos<=21));
 
+    if (puntosComputadora === puntosMinimos){alert('Nadie gana')}
+    else if (puntosMinimos>21){alert('Computadora gana');}
+    else if (puntosComputadora>21){alert('Ganaste ');}
+    else{alert('Computadora gana');}
 }
 
 //eventos
@@ -99,4 +103,18 @@ bstop.addEventListener('click',()=>{
     pedir.disabled = true;
     bstop.disabled = true;
 turnoComputadora(puntosJugador);
-})
+});
+
+newg.addEventListener('click', () =>{
+console.clear();
+    deck=[];
+    deck = crearDeck();
+    puntosJugador=0;
+    puntosComputadora=0;
+    smalls [0].innerText = 0;
+    smalls [1].innerText = 0;
+divCP.innerHTML='';
+divCJugador.innerHTML='';
+pedir.disabled = false;
+bstop.disabled = false;
+});
