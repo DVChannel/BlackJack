@@ -1,6 +1,14 @@
-let deck = [ ];
+let deck = [];
 const tipos= ['C','D','H','S'];
 const especiales= ['A','J','Q','K'];
+
+const newg = document.querySelector('#new');
+const stop = document.querySelector('#stop');
+const pedir = document.querySelector('#pedir');
+
+let puntosJugador = 0, puntosComputadora = 0;
+const smalls = document.querySelectorAll('small');
+
 //crea baraja
 const crearDeck = () => {
 for(let i=2; i<=10; i++){
@@ -13,13 +21,12 @@ for(let tipo of tipos){
     deck.push(esp + tipo);
 }
 }
-//console.log( deck );
 deck = _.shuffle( deck );
-console.log( deck );
+
 return deck;
 
 }
-crearDeck( );
+crearDeck();
 //tomar carta
 const pedirCarta = () =>{
  
@@ -28,8 +35,6 @@ const pedirCarta = () =>{
     }
 
     const carta= deck.pop();
-    console.log(deck);
-    console.log(carta);
     return carta;
 }
 const valorCarta = (carta) => {
@@ -39,6 +44,12 @@ return (isNaN(valor)) ?
 : valor * 1;
 }
 
+//eventos
 
-const valor = valorCarta(pedirCarta());
-console.log({valor});
+pedir.addEventListener('click', ()=>{
+    const carta = pedirCarta();
+puntosJugador = puntosJugador + valorCarta( carta );
+smalls [0].innerText= puntosJugador ; 
+
+
+})
